@@ -1,0 +1,30 @@
+<mvc:View xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:mvc="sap.ui.core.mvc" controllerName="Zeiterfassung.controller.projects.Master">
+	<Page id="masterSettingsPage" showHeader="false" showSubHeader="false" showFooter="false" busy="{busy>/busy}">
+		<content>
+			<Bar id="bar0" design="Header">
+				<contentLeft>
+					<FlexBox xmlns:tnt="sap.tnt" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" width="95%" id="box0" renderType="Bare" alignContent="Center" alignItems="Center" justifyContent="SpaceBetween">
+						<items>
+							<SearchField xmlns:tnt="sap.tnt" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" placeholder="Suche..." id="field0" liveChange="onFilterActivities" showSearchButton="false" width="80%"/>
+							<sap.ui.core:Icon xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:mvc="sap.ui.core.mvc" xmlns:sap.ui.core="sap.ui.core" src="sap-icon://favorite-list" size="1.2em" id="icon1" press="onFilterFavorites" color="#0854a0"/>
+							<sap.ui.core:Icon xmlns:sap.ui.core="sap.ui.core" src="sap-icon://refresh" size="1.2em" id="icon1_1597925869346" press="getProjects"/>
+						</items>
+					</FlexBox>
+				</contentLeft>
+			</Bar>
+			<IconTabHeader id="header0" backgroundDesign="Translucent" select="onFilterPipelinePhase">
+				<items>
+					<IconTabFilter text="Projekte" id="filter3" showAll="true" key="all" count="{projectsCount>/projectsCountAll}"/>
+					<IconTabFilter xmlns:tnt="sap.tnt" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" text="Projektumsetzung" count="{projectsCount>/projekumsetzung}" id="filter4_copy2" key="406945942" iconColor="Positive"/>
+					<IconTabFilter text="Projektplanung" count="{projectsCount>/projectPlanung}" id="filter4" key="455278692" iconColor="Critical"/>
+					<IconTabFilter xmlns:tnt="sap.tnt" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" text="Sonstige" count="{projectsCount>/others}" id="filter4_copy" key="others" iconColor="Contrast"/>
+				</items>
+			</IconTabHeader>
+		</content>
+		<tnt:NavigationList id="navigationList" items="{path: 'projects>/', templateShareable:false}">
+			<tnt:NavigationListItem id="navigationListItem1" text="{projects>name}" items="{path: 'projects>activitiesNew', templateShareable:false}" expanded="false" icon="sap-icon://circle-task-2">
+				<tnt:NavigationListItem id="navigationListItem" text="{projects>name}" select="onMasterPressed"/>
+			</tnt:NavigationListItem>
+		</tnt:NavigationList>
+	</Page>
+</mvc:View>

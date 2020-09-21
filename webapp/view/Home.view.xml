@@ -1,0 +1,204 @@
+<mvc:View xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" controllerName="Zeiterfassung.controller.Home">
+	<Page id="home" title="Zeiterfassung" showHeader="false" backgroundDesign="Solid">
+		<content>
+			<l:HorizontalLayout id="layout0"/>
+			<l:Grid id="grid0" vSpacing="2" hSpacing="2" defaultSpan="XL4 L3 M12 S12">
+				<l:content>
+					<FlexBox xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+						xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m" width="100%" id="box0_1579083727480" height="auto" alignItems="Start" direction="Column"
+						fitContainer="true" justifyContent="SpaceAround">
+						<items>
+							<u:Calendar xmlns:u="sap.ui.unified" id="calendar" width="32rem" legend="legend1" startDateChange="onChangeCalendarMonth"
+								select="onCalendarSelect"/>
+							<FlexBox width="32rem" id="box0_1587021102235" alignContent="SpaceAround" justifyContent="SpaceBetween">
+								<items>
+									<FlexBox xmlns:f="sap.ui.layout.form" xmlns:shape="sap.gantt.shape" xmlns:m="sap.m"
+										xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table"
+										xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified"
+										xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m" width="40%" id="box0_1591696872272" justifyContent="SpaceBetween"
+										backgroundDesign="Solid" renderType="Bare" direction="Column">
+										<items>
+											<u:CalendarLegend xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core"
+												xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.m.semantic="sap.m.semantic" xmlns:u="sap.ui.unified"
+												id="legend1" standardItems=""/>
+											<FlexBox width="75px" id="box0_1591698522209" alignContent="Center" alignItems="Center" class="today_legend" justifyContent="SpaceBetween">
+												<items>
+													<FlexBox class="today_legend_icon" id="box0_1591698808339" renderType="Bare" alignContent="End"/>
+													<Button xmlns="sap.m" text="Heute" class="today_legend_text" id="button12" type="Transparent" press="handleSelectToday"/>
+												</items>
+											</FlexBox>
+										</items>
+									</FlexBox>
+									<Button xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+										xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m"
+										text="Vormonat abschließen" id="button0_copy2" tooltip="dies kann nicht mehr rückgängig gemacht werden"
+										icon="sap-icon://accounting-document-verification" blocked="{prevMonthIsReleased>/monthIsReleased}" press="onCompleteMonth"/>
+								</items>
+							</FlexBox>
+						</items>
+					</FlexBox>
+					<FlexBox xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+						xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m" class="tt_container time_track_container_inner" id="box2" backgroundDesign="Solid"
+						justifyContent="SpaceBetween" height="320px" direction="Column" alignContent="SpaceBetween" fitContainer="true" width="100%"
+						renderType="Bare">
+						<items>
+							<Panel xmlns="sap.m" id="panel" expanded="true" accessibleRole="Complementary" backgroundDesign="Transparent">
+								<headerToolbar>
+									<Toolbar id="toolbar1_1579098642857" width="100%">
+										<content/>
+										<FlexBox width="100%" id="box0_1579101608079" alignContent="SpaceAround" alignItems="Center" renderType="Bare">
+											<items>
+												<sap.ui.core:Icon xmlns:sap.ui.core="sap.ui.core" src="sap-icon://timesheet" size="1em" id="icon1" decorative="false" color="#6f6f6f"/>
+												<Title xmlns="sap.m" text="Anwesenheit" textAlign="Center" id="anwesenheit" titleStyle="H5" width="100px"/>
+											</items>
+										</FlexBox>
+									</Toolbar>
+								</headerToolbar>
+								<content>
+									<FlexBox width="100%" id="box0_1579100121914" direction="Column" alignContent="SpaceAround" alignItems="Center" justifyContent="SpaceAround"
+										renderType="Bare" height="190px">
+										<items>
+											<FlexBox width="100%" id="box0_1579102618448" alignItems="Baseline" alignContent="SpaceAround" justifyContent="SpaceAround">
+												<items>
+													<FlexBox width="110px" id="box0_1593092613591" alignContent="Center" alignItems="Center" justifyContent="SpaceAround">
+														<items>
+															<RadioButton xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+																xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m" text="Büro"
+																id="button1" select="onChangeTimeType(0)" selected="true"/>
+															<core:Icon src="sap-icon://building" size="1.2em" id="icon1_1593092637342"/>
+														</items>
+													</FlexBox>
+													<FlexBox xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core"
+														xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:sap.m.semantic="sap.m.semantic"
+														width="155px" id="box0_1593092613591_copy" alignContent="Center" alignItems="Center" justifyContent="SpaceAround">
+														<items>
+															<RadioButton xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+																xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m" text="Home Office"
+																id="button2" select="onChangeTimeType(1)"/>
+															<core:Icon xmlns:core="sap.ui.core" src="sap-icon://home" size="1.2em" id="icon1_1593092637342_copy"/>
+														</items>
+													</FlexBox>
+													<FlexBox xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core"
+														xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:sap.m.semantic="sap.m.semantic"
+														width="155px" id="box0_1593092613591_copy2" alignContent="Center" alignItems="Center" justifyContent="SpaceAround">
+														<items>
+															<RadioButton xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+																xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m" text="Bereitschaft"
+																id="button3" select="onChangeTimeType(2)"/>
+															<core:Icon xmlns:core="sap.ui.core" src="sap-icon://headset" size="1.2em" id="icon1_1593092637342_copy2"/>
+														</items>
+													</FlexBox>
+												</items>
+											</FlexBox>
+											<FlexBox xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m"
+												class="track_inputs" id="box0_copy" alignContent="Center" alignItems="Center" justifyContent="SpaceAround" displayInline="true"
+												fitContainer="true" height="auto" width="100%">
+												<items>
+													<FlexBox class="input_container" id="box0_copy2" direction="Column" width="50%">
+														<items>
+															<FlexBox width="80px" id="box0_1589805132460" justifyContent="SpaceBetween">
+																<Label text="kommen" width="100%" id="kommen"/>
+																<core:Icon src="sap-icon://play" size="1em" id="icon1_1591190370926" press="onPressKommenButton"/>
+																<items/>
+															</FlexBox>
+															<TimePicker xmlns="sap.m" class="input" id="pickerKommen" minutesStep="15" displayFormat="HH:mm" required="true" valueFormat="HH:mm"
+																placeholder="{times>/times/kommen}" value="{kommenModel>/time}" change="onSetKommen" width="90%"/>
+														</items>
+													</FlexBox>
+													<FlexBox xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:sap.m.semantic="sap.m.semantic"
+														class="input_container" id="box0_copy3" direction="Column" width="50%">
+														<items>
+															<FlexBox width="65px" id="box0_1589805132461" justifyContent="SpaceBetween">
+																<Label text="gehen" width="100%" id="gehen"/>
+																<core:Icon src="sap-icon://stop" size="1em" id="icon2" press="onPressGehenButton"/>
+																<items/>
+															</FlexBox>
+															<TimePicker xmlns="sap.m" placeholder="{times>/times/gehen}" class="input" id="pickerGehen" minutesStep="15" displayFormat="HH:mm"
+																required="true" change="onSetGehen" width="90%" value="{gehenModel>/time}"/>
+														</items>
+													</FlexBox>
+													<FlexBox width="20%" id="box0_1586861766683" direction="ColumnReverse">
+														<items>
+															<core:Icon xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+																xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:sap.m.semantic="sap.m.semantic" xmlns:sap.ui.core="sap.ui.core"
+																src="sap-icon://add" press="onCreateEntry" size="2rem" class="addIcon" color="#354a5f" id="addIcon"
+																blocked="{monthIsReleased>/monthIsReleased}"/>
+															<Label width="100%" id="label0"/>
+														</items>
+													</FlexBox>
+												</items>
+											</FlexBox>
+										</items>
+									</FlexBox>
+								</content>
+							</Panel>
+							<MessageStrip xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+								xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m"
+								text="{parts: ['monthIsReleased>/month', 'monthIsReleased&gt;/year'], formatter: '.formatter.dateToString'} wurde abgeschlossen"
+								showIcon="true" id="strip0_copy" customIcon="sap-icon://accept" visible="{monthIsReleased>/monthIsReleased}" type="Warning"/>
+						</items>
+					</FlexBox>
+					<FlexBox width="100%" id="box0_1586867971217" backgroundDesign="Solid" alignContent="Start" alignItems="Start" direction="Column"
+						renderType="Bare">
+						<items>
+							<Panel xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+								id="panel0_1586859110023" backgroundDesign="Solid" accessibleRole="Complementary" expanded="true">
+								<headerToolbar>
+									<Toolbar id="toolbar1">
+										<Title xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" text="Favoriten"
+											titleStyle="H5" id="title1"/>
+										<core:Icon xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+											src="sap-icon://favorite" size="1em" id="icon0_1586859261599"/>
+										<content/>
+									</Toolbar>
+								</headerToolbar>
+								<content>
+									<IconTabBar id="bar0" headerMode="Inline">
+										<items>
+											<IconTabFilter text="Projekte" id="filter1" iconColor="Contrast">
+												<content>
+													<tnt:NavigationList id="navigationList" items="{favoritesModel>/}">
+														<tnt:NavigationListItem id="navigationListItem"
+															text="{favoritesModel>activity/projectPlan/project/displayName} - {favoritesModel>activity/name}" select="onFavPressed"/>
+													</tnt:NavigationList>
+												</content>
+											</IconTabFilter>
+											<IconTabFilter text="Sonstiges" iconColor="Contrast" id="filter2">
+												<content>
+													<tnt:NavigationList id="navigationList1" items="{otherFavoritesModel>/}">
+														<tnt:NavigationListItem id="navigationListItem1" text="{otherFavoritesModel>Description}" select="onOtherFavPressed"/>
+													</tnt:NavigationList>
+												</content>
+											</IconTabFilter>
+										</items>
+									</IconTabBar>
+								</content>
+							</Panel>
+						</items>
+					</FlexBox>
+				</l:content>
+			</l:Grid>
+			<l:Grid id="grid1" defaultSpan="XL12 L12 M12 S12" hSpacing="2" vSpacing="2">
+				<l:content>
+					<FlexBox xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+						xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m" width="auto" class="tt_container" id="box0_1577106752566" backgroundDesign="Solid"
+						direction="Column" alignContent="SpaceAround" fitContainer="true" alignItems="Center" height="auto" justifyContent="SpaceAround"
+						visible="true">
+						<items>
+							<mvc:XMLView viewName="Zeiterfassung.view.TimeTable"/>
+						</items>
+					</FlexBox>
+				</l:content>
+			</l:Grid>
+		</content>
+		<footer>
+			<Toolbar xmlns:f="sap.ui.layout.form" xmlns:shape="sap.gantt.shape" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"
+				xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" width="100%" id="timeToolbar" height="70px" active="true">
+				<content>
+					<mvc:XMLView viewName="Zeiterfassung.view.Timer" height="70px"/>
+				</content>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

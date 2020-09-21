@@ -1,0 +1,39 @@
+{
+	"navigation": [
+		{
+			"title": "Home",
+			"icon": "sap-icon://home",
+			"expanded": true,
+			"key": "home",
+			"items": []
+		},
+		{
+			"title": "Projekte",
+			"icon": "sap-icon://activities",
+			"expanded": false,
+			"key": "master"
+		,
+			"items": []
+		},
+		{
+			"title": "Sonstige Tätigkeiten",
+			"icon": "sap-icon://activities",
+			"expanded": false,
+			"key": "others"
+		,
+			"items": []
+		}
+	],
+	"fixedNavigation": [
+		{
+			"title": "Important Links",
+			"icon": "sap-icon://chain-link",
+			"key": "Important Links was pressed"
+		},
+		{
+			"title": "Legal",
+			"icon": "sap-icon://compare",
+			"key": "Legal was pressed"
+		}
+	]
+}

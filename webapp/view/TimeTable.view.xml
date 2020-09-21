@@ -1,0 +1,133 @@
+<mvc:View xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" controllerName="Zeiterfassung.controller.TimeTable">
+	<Panel xmlns="sap.m" width="auto" expanded="true" id="panel0" accessibleRole="Complementary" class="time_table" backgroundDesign="Solid">
+		<headerToolbar>
+			<Toolbar id="toolbar2" active="true" height="50px">
+				<content>
+					<FlexBox xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+						xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m" width="100%" id="box0_1579101608079_copy" alignContent="SpaceAround" alignItems="End"
+						justifyContent="Center">
+						<items>
+							<FlexBox width="100%" id="box0" alignItems="Center" justifyContent="SpaceBetween">
+								<items>
+									<FlexBox width="200px" id="box0_1598363046427" justifyContent="SpaceBetween">
+										<items>
+											<core:Icon xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:mvc="sap.ui.core.mvc"
+												xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:sap.m.semantic="sap.m.semantic" xmlns:core="sap.ui.core"
+												src="sap-icon://refresh" press=".reloadTimeList" size="1.2em" id="icon0" color="#6f6f6f"/>
+											<core:Icon xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core"
+												xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:sap.m.semantic="sap.m.semantic"
+												xmlns:sap.ui.core="sap.ui.core" src="sap-icon://line-chart-time-axis" size="1.2em" id="icon2_copy" decorative="false" color="#6f6f6f"
+												width="50px"/>
+											<Title xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+												xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m" text="Tagesübersicht"
+												textAlign="Center" id="tagesuebersicht" level="H1" titleStyle="H5"/>
+										</items>
+									</FlexBox>
+									<Button xmlns="sap.m" text="Zammad Einträge speichern" press="pushZammadEntriesInSapDb" id="button0"
+										icon="sap-icon://accounting-document-verification" type="Ghost" visible="{zammadButton>/visible}"/>
+								</items>
+							</FlexBox>
+						</items>
+					</FlexBox>
+				</content>
+			</Toolbar>
+		</headerToolbar>
+		<content>
+			<FlexBox width="100%" id="box0_1579088657059">
+				<items>
+					<Table xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+						xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m" noDataText="Keine Zeiten vorhanden" items="{activityModel>/}" id="table_activity"
+						headerText="Tätigkeiten" alternateRowColors="true" growingScrollToLoad="true" keyboardMode="Edit" mode="Delete"
+						delete="onDeleteActivityTime" inset="true"
+						footerText="Gesamt: {path: 'totalWorkTime>/activityTime' , formatter: '.formatter.decimalTimeToTime'}" itemPress="onShowTimeDetailDialog">
+						<items>
+							<ColumnListItem id="activity_time_colums_list_table_activity_0" type="Active">
+								<cells>
+									<Text id="activity_duration_table_activity_0" width="100%"
+										text="{path: 'activityModel>Duration', formatter: '.formatter.decimalTimeToTime'}" wrapping="false"/>
+									<Text text="{activityModel>ActivityTitle}" width="100%" id="input0" renderWhitespace="true" wrapping="false"/>
+									<Text text="{activityModel>ProjectTitle}" width="100%" id="input1" wrapping="false"/>
+									<Image id="zammad_logo" width="30px" src="{path: 'activityModel>OrderType', formatter: '.formatter.zammadIcon'}"/>
+									<sap.ui.core:Icon xmlns:sap.ui.core="sap.ui.core" class="zammad_new_icon" id="new_zammad" decorative="false" color="#6f6f6f" width="30px"
+										tooltip="Neu aus Zammad" visible="{path: 'activityModel>isNew', formatter: '.formatter.showNewFromZammad'}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+						<columns>
+							<Column id="column0_copy5">
+								<header>
+									<Label text="Dauer" id="label0_copy5"/>
+								</header>
+							</Column>
+							<Column id="column0">
+								<header>
+									<Label text="Tätigkeit" id="label11"/>
+								</header>
+							</Column>
+							<Column id="column1">
+								<header>
+									<Label text="Projekt" id="label12"/>
+								</header>
+							</Column>
+							<Column id="column2">
+								<header>
+									<Label text="" id="label13"/>
+								</header>
+							</Column>
+							<Column id="column3">
+								<header>
+									<Label text="" id="label14"/>
+								</header>
+							</Column>
+						</columns>
+						<customData>
+							<core:CustomData xmlns:sap.ui.core="sap.ui.core" key="w5g.dt.editable" value="true" id="data84"/>
+						</customData>
+					</Table>
+					<Table xmlns:ui="sap.ui.table" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+						xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m"
+						noDataText="Keine Zeiten vorhanden" items="{ path: '/PresTimeRecSet', parameters: {operationMode: 'Client'} }" id="table"
+						headerText="Anwesenheit" alternateRowColors="true" growingScrollToLoad="true" keyboardMode="Edit" mode="Delete" delete="onDeleteTime"
+						inset="true" footerText="Gesamt: {path: 'totalWorkTime>/workTime', formatter: '.formatter.decimalTimeToTime'}">
+						<items>
+							<ColumnListItem id="time_colums_list">
+								<cells>
+									<Text id="kommen_time" text="{path: 'Kommen', formatter: '.formatter.time'}"/>
+									<Text id="gehen_time" text="{path: 'Gehen', formatter: '.formatter.time'}"/>
+									<Text id="dauer" text="{path: 'Dauer', formatter: '.formatter.decimalTimeToTime'}"/>
+									<core:Icon id="typeIcon" src="{path: 'TimeType', formatter: '.formatter.typeToString'}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+						<columns>
+							<Column id="column0_copy6">
+								<header>
+									<Label text="Kommen" id="label0_copy6"/>
+								</header>
+							</Column>
+							<Column id="column1_copy6">
+								<header>
+									<Label text="Gehen" id="label1_copy6"/>
+								</header>
+							</Column>
+							<Column id="column2_copy6">
+								<header>
+									<Label text="Gesamt" id="label2_copy6"/>
+								</header>
+							</Column>
+							<Column id="column2_copy7">
+								<header>
+									<Label text="" id="label2_copy7"/>
+								</header>
+							</Column>
+						</columns>
+						<customData>
+							<core:CustomData xmlns:sap.ui.core="sap.ui.core" key="w5g.dt.editable" value="true" id="data22"/>
+						</customData>
+					</Table>
+				</items>
+			</FlexBox>
+		</content>
+	</Panel>
+</mvc:View>

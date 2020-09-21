@@ -1,0 +1,152 @@
+<mvc:View xmlns="sap.uxap" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" controllerName="Zeiterfassung.controller.others.DetailOther">
+	<m:Page showHeader="{device>/system/phone}" showNavButton="{device>/system/phone}" navButtonPress=".onNavButtonPress"
+		backgroundDesign="Solid" busy="{busy>/busy}">
+		<ObjectPageLayout visible="{hiddenModel>/page}" id="objectPageLayout">
+			<headerTitle>
+				<ObjectPageHeader markFavorite="{favoriteModel>/isFavorite}" showMarkers="true" objectTitle="{subset>/Description}"
+					objectSubtitle="{orderDescModel>/description}">
+					<actions>
+						<ToggleButton xmlns="sap.m" id="buttonFav" icon="sap-icon://favorite" pressed="{favoriteModel>/isFavorite}" press="onAddFavorite"
+							tooltip="Favorit"/>
+					</actions>
+				</ObjectPageHeader>
+			</headerTitle>
+			<sections>
+				<ObjectPageSection>
+					<subSections>
+						<ObjectPageSubSection id="shopOwnerId" title="{i18n>addTimeTab}">
+							<l:Grid xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" id="grid0" vSpacing="2" hSpacing="2"
+								defaultSpan="XL6 L12 M12 S12" width="" cd:w5g.dt.context="/OrderItemSet">
+								<l:content>
+									<FlexBox xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+										xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m" width="auto" id="box0_1579083727480" height="auto" alignItems="Start" direction="Column"
+										fitContainer="true" justifyContent="SpaceAround">
+										<items>
+											<u:Calendar xmlns:u="sap.ui.unified" id="calendar" width="500px" startDateChange="onChangeCalendarMonth" select="onCalendarSelect"/>
+											<FlexBox width="100%" id="box0_1587021102235" alignContent="SpaceAround" justifyContent="SpaceBetween">
+												<items>
+													<FlexBox xmlns:f="sap.ui.layout.form" xmlns:shape="sap.gantt.shape" xmlns:m="sap.m"
+														xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table"
+														xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified"
+														xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m" width="40%" id="box0_1591696872272" justifyContent="SpaceBetween"
+														backgroundDesign="Solid" renderType="Bare" direction="Column">
+														<items>
+															<u:CalendarLegend xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core"
+																xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.m.semantic="sap.m.semantic" xmlns:u="sap.ui.unified"
+																id="legend1" standardItems=""/>
+															<FlexBox width="75px" id="box0_1591698522209" alignContent="Center" alignItems="Center" class="today_legend" justifyContent="SpaceBetween">
+																<items>
+																	<FlexBox class="today_legend_icon" id="box0_1591698808339" renderType="Bare" alignContent="End"/>
+																	<Button xmlns="sap.m" text="Heute" class="today_legend_text" id="button12" type="Transparent" press="handleSelectToday"/>
+																</items>
+															</FlexBox>
+														</items>
+													</FlexBox>
+												</items>
+											</FlexBox>
+										</items>
+									</FlexBox>
+									<FlexBox xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+										xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m" class="tt_container time_track_container_inner" id="box2" backgroundDesign="Solid"
+										justifyContent="SpaceAround" height="auto" alignContent="SpaceBetween" fitContainer="true" width="100%" direction="Column">
+										<items>
+											<f:Form editable="true" id="form1">
+												<f:formContainers>
+													<f:FormContainer xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" id="container2"
+														cd:w5g.dt.context="/OrderItemSet" expandable="true">
+														<f:formElements>
+															<f:FormElement id="element6_1583147710213">
+																<f:fields>
+																	<Label text="{/#OrderItem/Duration/@sap:label}" width="50%" required="true"/>
+																	<Input xmlns="sap.m" value="{hoursWorked>/time}" id="inputTime" change="setWorkDuration" type="Time" required="true"/>
+																</f:fields>
+															</f:FormElement>
+															<f:FormElement id="element7" visible="false">
+																<f:label>
+																	<Label text="{/#OrderItem/ActivityType/@sap:label}" id="label7" required="true"/>
+																</f:label>
+																<f:fields>
+																	<ComboBox xmlns="sap.m" items="{ path: '/CustOrdTypeSubSet', filters: [{ path: 'Type', operator: 'EQ', value1: '1000' }]}"
+																		selectionChange="setActivityType" required="true">
+																		<core:Item xmlns:core="sap.ui.core" key="{Type}" text="{Description}"/>
+																	</ComboBox>
+																</f:fields>
+															</f:FormElement>
+															<f:FormElement id="element8">
+																<f:label>
+																	<Label text="Beschreibung" id="label8"/>
+																</f:label>
+																<f:fields>
+																	<TextArea xmlns="sap.m" rows="4" id="area0" change="setDescription" required="true"/>
+																</f:fields>
+															</f:FormElement>
+														</f:formElements>
+														<f:customData>
+															<core:CustomData key="w5g.dt.editable" value="true" id="data85"/>
+														</f:customData>
+													</f:FormContainer>
+												</f:formContainers>
+												<f:layout>
+													<f:ResponsiveGridLayout id="layout2"/>
+												</f:layout>
+											</f:Form>
+											<FlexBox width="100%" id="box0" direction="RowReverse">
+												<items>
+													<Button xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+														xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m" text="Speichern"
+														id="button4" activeIcon="sap-icon://save" press="onCreateEntry" blocked="{monthIsReleased>/monthIsReleased}"/>
+												</items>
+											</FlexBox>
+											<MessageStrip xmlns:f="sap.ui.layout.form" xmlns:m="sap.m" xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+												xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+												xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m"
+												text="{parts: ['monthIsReleased>/month', 'monthIsReleased&gt;/year'], formatter: '.formatter.dateToString'} wurde abgeschlossen"
+												showIcon="true" id="strip0_copy" customIcon="sap-icon://accept" visible="{monthIsReleased>/monthIsReleased}" type="Warning"/>
+										</items>
+									</FlexBox>
+								</l:content>
+							</l:Grid>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection>
+					<subSections>
+						<ObjectPageSubSection id="shopConfigurationId" titleUppercase="false" title="{i18n>dayOverview}">
+							<blocks>
+								<m:FlexBox width="100%" id="box1" visible="true">
+									<m:items>
+										<mvc:XMLView viewName="Zeiterfassung.view.TimeTable"/>
+									</m:items>
+								</m:FlexBox>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+			</sections>
+		</ObjectPageLayout>
+		<m:content>
+			<l:VerticalLayout width="100%" id="layout12_1589803774823"/>
+			<m:FlexBox visible="{hiddenModel>/noProject}" width="100%" id="box1_1586340947590" alignContent="End" justifyContent="Center" height="100%"
+				alignItems="Center" renderType="Bare">
+				<m:items>
+					<m:FlexBox width="300px" id="box1_1590401986816" justifyContent="SpaceAround" renderType="Bare" alignItems="Center">
+						<m:items>
+							<core:Icon xmlns="sap.uxap" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:mvc="sap.ui.core.mvc"
+								xmlns:core="sap.ui.core" src="sap-icon://arrow-left" size="2em" id="icon0_1590401942600"/>
+							<Text xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+								xmlns="sap.m" text="Bitte wählen Sie eine Tätigkeit aus" id="text1" textAlign="Center"/>
+						</m:items>
+					</m:FlexBox>
+				</m:items>
+			</m:FlexBox>
+		</m:content>
+		<m:footer>
+			<m:Toolbar busy="{footerBusyMOdel>/busy}" width="100%" id="timeToolbar" height="70px" active="true">
+				<m:content>
+					<mvc:XMLView viewName="Zeiterfassung.view.Timer" height="70px"/>
+				</m:content>
+			</m:Toolbar>
+		</m:footer>
+	</m:Page>
+</mvc:View>

@@ -1,0 +1,58 @@
+<mvc:View xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" controllerName="Zeiterfassung.controller.Timer">
+	<FlexBox width="90%" id="box0" alignItems="Center" renderType="Bare" height="70px" alignContent="Start" justifyContent="SpaceBetween">
+		<items>
+			<FlexBox width="40%" id="box0_1589973582638" renderType="Bare" justifyContent="SpaceBetween" height="50%">
+				<items>
+					<l:VerticalLayout width="20%">
+						<Button xmlns:f="sap.ui.layout.form" xmlns:m="sap.m" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m" text="Start" id="timerButton_activity" activeIcon="sap-icon://stop" icon="sap-icon://media-play" type="Ghost" press="onPressStartButton" iconFirst="false"/>
+					</l:VerticalLayout>
+					<l:VerticalLayout xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns="sap.uxap" xmlns:f="sap.ui.layout.form" xmlns:m="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" visible="{footerModel>/showFooter}" id="layout12_1588838432493_copy3" width="20%">
+						<l:content>
+							<m:Label xmlns:m="sap.m" text="Start" width="100%" id="label12_1588838441188_copy3" design="Bold"/>
+							<m:Token text="{pastTimeActivity>/startDateLocale}" id="token3" editable="false"/>
+						</l:content>
+					</l:VerticalLayout>
+					<l:VerticalLayout xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:shape="sap.gantt.shape" xmlns="sap.uxap" xmlns:f="sap.ui.layout.form" xmlns:m="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" visible="{footerModel>/showPutTimeButton}" id="layout12_1588838432493_copy4" width="20%">
+						<l:content>
+							<m:Label xmlns:m="sap.m" text="Stop" width="100%" id="label12_1588838441188_copy4" design="Bold"/>
+							<m:Token text="{pastTimeActivity>/endDateLocale}" id="token4" editable="false"/>
+						</l:content>
+					</l:VerticalLayout>
+					<l:VerticalLayout xmlns="sap.m" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" visible="{footerModel>/showFooter}" id="layout12_1588838432493" width="20%">
+						<l:content>
+							<Label xmlns="sap.m" text="Dauer" width="100%" id="label12_1588838441188" design="Bold"/>
+							<Token text="{pastTimeActivity>/time}" id="token5" editable="false"/>
+						</l:content>
+					</l:VerticalLayout>
+					<l:VerticalLayout xmlns="sap.uxap" xmlns:f="sap.ui.layout.form" xmlns:shape="sap.gantt.shape" xmlns:m="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" visible="{footerModel>/showPutTimeButton}" id="layout12_1588838432493_copy" width="20%">
+						<l:content>
+							<Button xmlns="sap.m" text="Zeit eintragen" id="button14" type="Accept" icon="sap-icon://arrow-top" press="putTimeToProject"/>
+						</l:content>
+					</l:VerticalLayout>
+				</items>
+			</FlexBox>
+			<FlexBox xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" width="25%" id="box0_1589973582638_copy" renderType="Bare" justifyContent="SpaceAround" height="50%">
+				<items>
+					<l:VerticalLayout xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns="sap.uxap" xmlns:f="sap.ui.layout.form" xmlns:m="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" visible="{footerModel>/showDayTimer}" id="layout12_1588838432493_copy5">
+						<l:content>
+							<m:Label xmlns:m="sap.m" text="Arbeitszeit" width="100%" id="label12_1588838441188_copy5" design="Bold"/>
+							<m:Token text="{pastTime>/time}" id="token0" editable="false"/>
+						</l:content>
+					</l:VerticalLayout>
+					<l:VerticalLayout xmlns="sap.m" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" visible="{footerModel>/showWorkTime}" id="layout12_1588838432493_copy2">
+						<l:content>
+							<Label xmlns="sap.m" text="Erfasste Anwesenheit" width="100%" id="label12_1588838441188_copy" design="Bold"/>
+							<Token text="{path: 'totalWorkTime>/workTime', formatter: '.formatter.decimalTimeToTime'}" id="token1" editable="false"/>
+						</l:content>
+					</l:VerticalLayout>
+					<l:VerticalLayout xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:shape="sap.gantt.shape" xmlns="sap.uxap" xmlns:f="sap.ui.layout.form" xmlns:m="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" id="layout12_1588838432493_copy6">
+						<l:content>
+							<m:Label xmlns:m="sap.m" text="Erfasste Tätigkeiten" width="100%" id="label12_1588838441188_copy6" design="Bold"/>
+							<m:Token text="{path: 'totalWorkTime>/activityTime', formatter: '.formatter.decimalTimeToTime'}" id="token2" editable="false"/>
+						</l:content>
+					</l:VerticalLayout>
+				</items>
+			</FlexBox>
+		</items>
+	</FlexBox>
+</mvc:View>

@@ -1,0 +1,29 @@
+<mvc:View xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:mvc="sap.ui.core.mvc" controllerName="Zeiterfassung.controller.others.MasterOther">
+	<Page xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" id="masterSettingsPage" showHeader="false"
+		cd:w5g.dt.context="/CustOrdTypeSet">
+		<content>
+			<Bar id="bar0" design="Header">
+				<contentLeft>
+					<FlexBox xmlns:tnt="sap.tnt" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" width="95%" id="box0" renderType="Bare" alignContent="Center"
+						alignItems="Center" justifyContent="SpaceBetween">
+						<items>
+							<SearchField xmlns:tnt="sap.tnt" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" placeholder="Suche..." id="field1"
+								liveChange="onFilterActivities" showSearchButton="false" width="90%"/>
+							<sap.ui.core:Icon xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:mvc="sap.ui.core.mvc" xmlns:sap.ui.core="sap.ui.core"
+								src="sap-icon://favorite-list" size="1.2em" id="icon1" press="onFilterFavorites" color="#0854a0"/>
+						</items>
+					</FlexBox>
+				</contentLeft>
+			</Bar>
+		</content>
+		<tnt:NavigationList id="navigationList1"
+			items="{path: '/CustOrdTypeSet', templateShareable: true, filters: [ { filters: [ { path: 'Type', operator: 'NE', value1: '1000' }, { path: 'Type', operator: 'NE', value1: '2000' } ], and: true } ]}">
+			<tnt:NavigationListItem text="{Description}"
+				items="{path: 'NavCustOrdTypeToCustOrdTypeSub', templateShareable:false, sorter: [ { path: 'Type', descending: 'false' } ]}"
+				expanded="false" icon="sap-icon://circle-task-2">
+				<tnt:NavigationListItem text="{Description}" key="{Description}" select=".onMasterPressed"/>
+			</tnt:NavigationListItem>
+		</tnt:NavigationList>
+		<content/>
+	</Page>
+</mvc:View>

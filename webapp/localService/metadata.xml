@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="ZHR_TIME_TRACKING_SRV" xml:lang="de" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="CustOrdType" sap:content-version="1">
+				<Key><PropertyRef Name="Type"/></Key><Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Auftragstyp" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Bezeichnung"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="NavCustOrdTypeToCustOrdTypeSub" Relationship="ZHR_TIME_TRACKING_SRV.AssCustOrdTypeToCustOrdTypeSub"
+					FromRole="FromRole_AssCustOrdTypeToCustOrdTypeSub" ToRole="ToRole_AssCustOrdTypeToCustOrdTypeSub"/></EntityType>
+			<EntityType Name="CustOrdTypeSub" sap:content-version="1">
+				<Key><PropertyRef Name="Type"/><PropertyRef Name="TypeSub"/></Key><Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Auftragstyp" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="TypeSub" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label=" Subauftragstyp"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Bezeichnung"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Order" sap:content-version="1">
+				<Key><PropertyRef Name="DbKey"/></Key><Property Name="DbKey" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="GUID 16" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="OrderTyp" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Auftragstyp" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="OrderTypeSub" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label=" Subauftragstyp"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ExternalId" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Externe ID"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CoType" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Kostenträgertyp"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CoId" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Kostenträger-ID"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Status" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Description" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Bezeichnung" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="NavOrderToOrderItem" Relationship="ZHR_TIME_TRACKING_SRV.AssOrderToOrderItem"
+					FromRole="FromRole_AssOrderToOrderItem" ToRole="ToRole_AssOrderToOrderItem"/></EntityType>
+			<EntityType Name="OrderItem" sap:content-version="1">
+				<Key><PropertyRef Name="DbKey"/><PropertyRef Name="ParentKey"/></Key><Property Name="DbKey" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="GUID 16" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="ParentKey" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="GUID 16" sap:sortable="false"/><Property Name="Datum" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Datum"/><Property Name="Duration" Type="Edm.Decimal" Precision="4" Scale="2" sap:unicode="false" sap:label="Stunden" sap:sortable="false"
+					sap:filterable="false"/><Property Name="EmployeeId" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Personalnr"/><Property Name="OrderType" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Auftragstyp"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ActivityType" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Tätigkeitstyp" sap:sortable="false"
+					sap:filterable="false"/><Property Name="ActivityLevel" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Tätigkeitsstufe" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Status" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Status" sap:sortable="false" sap:filterable="false"/><Property Name="Description" Type="Edm.String" sap:unicode="false" sap:label="Bezeichnung" sap:sortable="false" sap:filterable="false"/><Property Name="ExternalId" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Externe ID" sap:sortable="false"
+					sap:filterable="false"/><Property Name="ActivityTitle" Type="Edm.String" MaxLength="255" sap:unicode="false" sap:label="Tätigkeitsbez." sap:sortable="false"
+					sap:filterable="false"/><Property Name="ProjectTitle" Type="Edm.String" MaxLength="255" sap:unicode="false" sap:label="Projektbez." sap:sortable="false"
+					sap:filterable="false"/></EntityType>
+			<EntityType Name="CustCostType" sap:content-version="1">
+				<Key><PropertyRef Name="Key"/></Key><Property Name="Key" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Schlüssel" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Value" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Wert" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="MonthlyRelease" sap:content-version="1">
+				<Key><PropertyRef Name="DbKey"/></Key><Property Name="DbKey" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="GUID 16" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="Ryear" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="Jahr" sap:updatable="false"/><Property Name="Rmonth" Type="Edm.String" MaxLength="2" sap:unicode="false" sap:label="Monat" sap:updatable="false"/><Property Name="EmployeeId" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Personalnr" sap:updatable="false"/><Property Name="Released" Type="Edm.Boolean" sap:unicode="false" sap:label="Freigabe" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="PresTimeRec" sap:content-version="1">
+				<Key><PropertyRef Name="DbKey"/></Key><Property Name="DbKey" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="GUID 16" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="Pernr" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Personalnr"/><Property Name="Datum" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Datum"/><Property Name="Kommen" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Beginnuhrzeit" sap:filterable="false"/><Property Name="Gehen" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Endeuhrzeit" sap:filterable="false"/><Property Name="Dauer" Type="Edm.Decimal" Precision="4" Scale="2" sap:unicode="false" sap:label="Stunden" sap:filterable="false"/><Property Name="TimeType" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Zeittyp" sap:filterable="false"/></EntityType>
+			<EntityType Name="CustOrdStatus" sap:content-version="1">
+				<Key><PropertyRef Name="Key"/></Key><Property Name="Key" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Schlüssel" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Value" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Wert" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="CustActType" sap:content-version="1">
+				<Key><PropertyRef Name="Key"/></Key><Property Name="Key" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Schlüssel" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Value" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Wert" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<Association Name="AssOrderToOrderItem" sap:content-version="1"><End Type="ZHR_TIME_TRACKING_SRV.Order" Multiplicity="1" Role="FromRole_AssOrderToOrderItem"/><End Type="ZHR_TIME_TRACKING_SRV.OrderItem" Multiplicity="*" Role="ToRole_AssOrderToOrderItem"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_AssOrderToOrderItem"><PropertyRef Name="DbKey"/></Principal>
+					<Dependent Role="ToRole_AssOrderToOrderItem"><PropertyRef Name="ParentKey"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="AssCustOrdTypeToCustOrdTypeSub" sap:content-version="1"><End Type="ZHR_TIME_TRACKING_SRV.CustOrdType" Multiplicity="1" Role="FromRole_AssCustOrdTypeToCustOrdTypeSub"/><End Type="ZHR_TIME_TRACKING_SRV.CustOrdTypeSub" Multiplicity="*" Role="ToRole_AssCustOrdTypeToCustOrdTypeSub"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_AssCustOrdTypeToCustOrdTypeSub"><PropertyRef Name="Type"/></Principal>
+					<Dependent Role="ToRole_AssCustOrdTypeToCustOrdTypeSub"><PropertyRef Name="Type"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZHR_TIME_TRACKING_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="CustOrdTypeSet" EntityType="ZHR_TIME_TRACKING_SRV.CustOrdType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="CustOrdTypeSubSet" EntityType="ZHR_TIME_TRACKING_SRV.CustOrdTypeSub" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="OrderSet" EntityType="ZHR_TIME_TRACKING_SRV.Order" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="OrderItemSet" EntityType="ZHR_TIME_TRACKING_SRV.OrderItem" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="CustCostTypeSet" EntityType="ZHR_TIME_TRACKING_SRV.CustCostType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="MonthlyReleaseSet" EntityType="ZHR_TIME_TRACKING_SRV.MonthlyRelease" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="PresTimeRecSet" EntityType="ZHR_TIME_TRACKING_SRV.PresTimeRec" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="CustOrdStatusSet" EntityType="ZHR_TIME_TRACKING_SRV.CustOrdStatus" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="CustActTypeSet" EntityType="ZHR_TIME_TRACKING_SRV.CustActType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<AssociationSet Name="AssOrderToOrderItemSet" Association="ZHR_TIME_TRACKING_SRV.AssOrderToOrderItem" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="OrderSet" Role="FromRole_AssOrderToOrderItem"/><End EntitySet="OrderItemSet" Role="ToRole_AssOrderToOrderItem"/></AssociationSet>
+				<AssociationSet Name="AssCustOrdTypeToCustOrdTypeSubSet" Association="ZHR_TIME_TRACKING_SRV.AssCustOrdTypeToCustOrdTypeSub"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="CustOrdTypeSet" Role="FromRole_AssCustOrdTypeToCustOrdTypeSub"/><End EntitySet="CustOrdTypeSubSet" Role="ToRole_AssCustOrdTypeToCustOrdTypeSub"/></AssociationSet>
+			</EntityContainer><atom:link rel="self"
+				href="https://webidecp-g848ywuieu.dispatcher.eu3.hana.ondemand.com/destinations/GWD/sap/opu/odata/sap/ZHR_TIME_TRACKING_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/><atom:link rel="latest-version"
+				href="https://webidecp-g848ywuieu.dispatcher.eu3.hana.ondemand.com/destinations/GWD/sap/opu/odata/sap/ZHR_TIME_TRACKING_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

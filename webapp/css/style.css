@@ -1,0 +1,94 @@
+.sapUiSizeCompact .sapUiCalItem,
+.sapUiSizeCompact .sapUiCalWeekNum {
+    height: 3rem !important;
+}
+
+#container-Zeiterfassung---detail--panel0 {
+    background-color: white !important;
+}
+
+#__xmlview1--panel0-content {
+    background-color: white !important;
+}
+
+#container-Zeiterfassung---detailOthers--panel0 {
+    background-color: white;
+}
+
+#container-Zeiterfassung---detail--panel1 {
+    background-color: white;
+}
+
+#container-Zeiterfassung---detail--panel11 {
+    background-color: white;
+}
+
+#container-Zeiterfassung---detail--text3 {
+    padding: 15px;
+}
+
+.footer_flex_1 {
+    padding-top: 16px;
+}
+
+.footer_flex_2 {
+    padding-top: 16px;
+    padding-left: 50px;
+}
+
+.today_legend {
+    padding-left: 11px;
+    padding-bottom: 8px;
+}
+
+.today_legend_icon {
+    background-color: #c0399f;
+    height: 14px;
+    width: 14px;
+    margin: 1px;
+    background: #c0399f;
+    border: 1px solid #89919a;
+    box-sizing: border-box;
+}
+
+.today_legend_text span span {
+    font-size: .75rem;
+}
+
+.teilnehmer_panel {
+    margin-top: 20px;
+}
+
+.teilnehmer_panel > .sapMPanelWrappingDivTb {
+    border-bottom: none;
+}
+
+.zammad_new_icon {
+    height: 30px;
+    width: 30px;
+    margin: 0 auto;
+    background-color: lime;
+    animation-name: pulse;
+    animation-duration: 2.0s;
+    animation-timing-function: ease-out;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(.4);
+        background-color: #556B2F;
+        border-radius: 100%;
+    }
+    50% {
+        background-color: #8FBC8F;
+        border-radius: 100%;
+    }
+    100% {
+        transform: scale(.5);
+        background-color: #556B2F;
+        border-radius: 100%;
+    }
+}

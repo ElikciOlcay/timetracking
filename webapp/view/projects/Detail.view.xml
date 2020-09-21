@@ -1,0 +1,292 @@
+<mvc:View xmlns="sap.uxap" xmlns:f="sap.ui.layout.form" xmlns:shape="sap.gantt.shape" xmlns:l="sap.ui.layout" xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" controllerName="Zeiterfassung.controller.projects.Detail">
+	<m:Page showHeader="{device>/system/phone}" showNavButton="{device>/system/phone}" navButtonPress=".onNavButtonPress"
+		backgroundDesign="Solid" busy="{busy>/busy}">
+		<ObjectPageLayout visible="{hiddenModel>/page}" id="objectPageLayout">
+			<headerTitle>
+				<ObjectPageHeader markFavorite="{favoriteModel>/isFavorite}" showMarkers="true" objectTitle="{project>/activity/name}"
+					objectSubtitle="Projekt: {project>/activity/projectPlan/project/displayName} id: {project>/activity/projectPlan/project/id}">
+					<actions>
+						<ToggleButton xmlns="sap.m" id="buttonFav" icon="sap-icon://favorite" pressed="{favoriteModel>/isFavorite}" press="onAddFavorite"
+							tooltip="Favorit"/>
+						<core:Icon src="sap-icon://kpi-managing-my-area" size="1.5em" id="icon0_1592892984523" visible="{ownerModel>/isOwner}" color="#5E696E"
+							tooltip="Verantwortlicher"/>
+					</actions>
+				</ObjectPageHeader>
+			</headerTitle>
+			<headerContent>
+				<m:FlexBox renderType="Bare" direction="Column" width="55%" visible="{assignmentsCount>/multipleUser}" class="singeUserInfo">
+					<l:VerticalLayout width="33%">
+						<m:Label text="Ursprüngliche Schätzung:"/>
+						<Text xmlns="sap.m" text="{path: 'projectAssignment>/baseEffort', formatter: '.formatter.effortText'}" id="text1118"/>
+					</l:VerticalLayout>
+					<l:VerticalLayout width="33%">
+						<m:Label text="Verbleibender Aufwand:"/>
+						<Text xmlns="sap.m" text="{path: 'activityWorkRecord>/openEffort', formatter: '.formatter.effortText'}" id="text11128"/>
+					</l:VerticalLayout>
+					<l:VerticalLayout width="33%">
+						<m:Label text="Aktueller Aufwand:"/>
+						<Text xmlns="sap.m" text="{path: 'activityWorkRecord>/actualEffort', formatter: '.formatter.effortText'}" id="text111258"/>
+					</l:VerticalLayout>
+				</m:FlexBox>
+				<l:VerticalLayout width="100%" id="layout15" class="multipleUserInfo">
+					<l:content>
+						<l:VerticalLayout xmlns="sap.uxap" xmlns:f="sap.ui.layout.form" xmlns:shape="sap.gantt.shape" xmlns:m="sap.m" xmlns:core="sap.ui.core"
+							xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" id="layout21" width="100%">
+							<l:content>
+								<Panel xmlns="sap.m" expandable="{assignmentsCount>/multipleUser}" id="panel1_1592828941825" tooltip="Verantwortlicher">
+									<headerToolbar>
+										<Toolbar id="toolbar12" design="Transparent" style="Clear">
+											<Title text="{path: 'assignmentsCount>/multipleUser', formatter: '.formatter.getActivityHeaderText'}" titleStyle="H6"/>
+											<content/>
+										</Toolbar>
+									</headerToolbar>
+									<content>
+										<l:VerticalLayout id="layout16" width="16.6%">
+											<Label text="Ursprüngliche Schätzung:"/>
+											<Text xmlns="sap.m" text="{path: 'projectActivity>/baseEffort', formatter: '.formatter.effortText'}" id="text11"/>
+										</l:VerticalLayout>
+										<l:VerticalLayout id="layout17" width="16.6%">
+											<Label text="Aktuelle Schätzung:"/>
+											<Text xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+												xmlns="sap.m" text="{path: 'expectedEffort>/effort', formatter: '.formatter.effortText'}" id="text11_copy"/>
+										</l:VerticalLayout>
+										<l:VerticalLayout id="layout18" width="16.6%">
+											<Label text="Verbleibender Aufwand:"/>
+											<Text xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+												xmlns="sap.m" text="{path: 'projectActivity>/openEffort', formatter: '.formatter.effortText'}" id="text11_copy1"/>
+										</l:VerticalLayout>
+										<l:VerticalLayout id="layout19" width="16.6%">
+											<Label text="Aktueller Aufwand:"/>
+											<Text xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+												xmlns="sap.m" text="{path: 'projectActivity>/actualEffort', formatter: '.formatter.effortText'}" id="text11_copy2"/>
+										</l:VerticalLayout>
+										<l:VerticalLayout id="layout20" width="16.6%">
+											<Label text="Fortschritt:"/>
+											<ProgressIndicator xmlns="sap.m" percentValue="{projectActivity>/complete}" id="indicator0" state="Information"/>
+										</l:VerticalLayout>
+										<l:VerticalLayout id="layout13" width="16.6%">
+											<l:content>
+												<Label xmlns:f="sap.ui.layout.form" xmlns:shape="sap.gantt.shape" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"
+													xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" text="Ende:" id="label11_1589803835924"/>
+												<Text xmlns:shape="sap.gantt.shape" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:core="sap.ui.core"
+													xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" text="{path: 'projectActivity>/finish', formatter: '.formatter.dateConverter'}" id="text11_copy3"/>
+											</l:content>
+										</l:VerticalLayout>
+										<Panel xmlns="sap.m" width="20%" expandable="true" class="teilnehmer_panel" visible="{assignmentsCount>/multipleUser}"
+											id="panel0_1591801778827">
+											<headerToolbar>
+												<Toolbar id="toolbar1" design="Transparent" style="Clear">
+													<Title text="Teilnehmer" titleStyle="H6"/>
+													<ObjectNumber xmlns="sap.m" number="{assignmentsCount>/count}" id="number0" state="Success"/>
+													<content/>
+												</Toolbar>
+											</headerToolbar>
+											<content>
+												<List items="{assignments>/}" id="list2">
+													<StandardListItem title="{assignments>fullName}" icon="sap-icon://business-card" id="item15_copy"/>
+												</List>
+											</content>
+										</Panel>
+									</content>
+								</Panel>
+							</l:content>
+						</l:VerticalLayout>
+					</l:content>
+				</l:VerticalLayout>
+			</headerContent>
+			<sections>
+				<ObjectPageSection showTitle="true">
+					<subSections>
+						<ObjectPageSubSection id="shopOwnerId" title="{i18n>addTimeTab}">
+							<l:Grid xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" id="grid0" vSpacing="2" hSpacing="2"
+								defaultSpan="XL6 L12 M12 S12" width="" cd:w5g.dt.context="/OrderItemSet" position="Center">
+								<l:content>
+									<FlexBox xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+										xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m" width="auto" id="box0_1579083727480" height="auto" alignItems="Start" direction="Column"
+										fitContainer="true" justifyContent="SpaceAround">
+										<items>
+											<u:Calendar xmlns:u="sap.ui.unified" id="calendar" legend="legend1" width="500px" startDateChange="onChangeCalendarMonth"
+												select="onCalendarSelect"/>
+											<FlexBox width="100%" id="box0_1587021102235" alignContent="SpaceAround" justifyContent="SpaceBetween">
+												<items>
+													<FlexBox xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+														xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m" width="40%"
+														id="box0_1591696872272" justifyContent="SpaceBetween" backgroundDesign="Solid" renderType="Bare" direction="Column">
+														<items>
+															<u:CalendarLegend xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core"
+																xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.m.semantic="sap.m.semantic" xmlns:u="sap.ui.unified"
+																id="legend1" standardItems=""/>
+															<FlexBox width="75px" id="box0_1591698522209" alignContent="Center" alignItems="Center" class="today_legend" justifyContent="SpaceBetween">
+																<items>
+																	<FlexBox class="today_legend_icon" id="box0_1591698808339" renderType="Bare" alignContent="End"/>
+																	<Button xmlns="sap.m" text="Heute" class="today_legend_text" id="button12" type="Transparent" press="handleSelectToday"/>
+																</items>
+															</FlexBox>
+														</items>
+													</FlexBox>
+												</items>
+											</FlexBox>
+										</items>
+									</FlexBox>
+									<FlexBox xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+										xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m" class="tt_container time_track_container_inner" id="box2" backgroundDesign="Solid"
+										justifyContent="SpaceAround" height="auto" alignContent="SpaceBetween" fitContainer="true" width="100%" direction="Column">
+										<items>
+											<f:Form editable="true" id="form1">
+												<f:formContainers>
+													<f:FormContainer xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" id="container2"
+														cd:w5g.dt.context="/OrderItemSet" expandable="true">
+														<f:formElements>
+															<f:FormElement id="element6_1583147710213">
+																<f:fields>
+																	<Label text="{/#OrderItem/Duration/@sap:label}" width="50%" required="true"/>
+																	<Input xmlns="sap.m" value="{hoursWorked>/time}" id="inputTime" change="setWorkDuration" type="Time" required="true"/>
+																</f:fields>
+															</f:FormElement>
+															<f:FormElement label="Verbleibender Aufwand (Std.) nach dieser Buchung, bei Bedarf bitte an aktuelle Situation anpassen" id="element1"
+																visible="{ownerModel>/isOwner}">
+																<f:fields>
+																	<Input width="100%" id="input_effort" value="{effortAfterBooking>/effortAfterBooking}" required="true" change="setOpenEffort" type="Number"/>
+																</f:fields>
+															</f:FormElement>
+															<f:FormElement id="element7" visible="false">
+																<f:label>
+																	<Label text="{/#OrderItem/ActivityType/@sap:label}" id="label7" required="true"/>
+																</f:label>
+																<f:fields>
+																	<ComboBox xmlns="sap.m" items="{ path: '/CustOrdTypeSubSet', filters: [{ path: 'Type', operator: 'EQ', value1: '1000' }]}"
+																		selectionChange="setActivityType" required="true">
+																		<core:Item xmlns:core="sap.ui.core" key="{Type}" text="{Description}"/>
+																	</ComboBox>
+																</f:fields>
+															</f:FormElement>
+															<f:FormElement id="element8">
+																<f:label>
+																	<Label text="Beschreibung" id="label8"/>
+																</f:label>
+																<f:fields>
+																	<TextArea xmlns="sap.m" rows="4" id="area0" change="setDescription" required="true"/>
+																</f:fields>
+															</f:FormElement>
+															<f:FormElement/>
+															<f:FormElement id="element1_1591710390776">
+																<f:fields>
+																	<CheckBox xmlns="sap.m" text="Vorgang abschließen" selected="false" id="complete_checkbox" select="completeActivity"
+																		visible="{ownerModel>/isOwner}"/>
+																</f:fields>
+															</f:FormElement>
+														</f:formElements>
+														<f:customData>
+															<core:CustomData key="w5g.dt.editable" value="true" id="data85"/>
+														</f:customData>
+													</f:FormContainer>
+												</f:formContainers>
+												<f:layout>
+													<f:ResponsiveGridLayout id="layout2"/>
+												</f:layout>
+											</f:Form>
+											<FlexBox width="100%" id="box0" direction="RowReverse">
+												<items>
+													<Button xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+														xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m" text="Speichern"
+														id="button4" activeIcon="sap-icon://save" press="createTimeRecord" blocked="{monthIsReleased>/monthIsReleased}"/>
+												</items>
+											</FlexBox>
+											<MessageStrip xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+												xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:sap.m.semantic="sap.m.semantic" xmlns="sap.m"
+												text="{parts: ['monthIsReleased>/month', 'monthIsReleased&gt;/year'], formatter: '.formatter.dateToString'} wurde abgeschlossen"
+												showIcon="true" id="strip0_copy" customIcon="sap-icon://accept" visible="{monthIsReleased>/monthIsReleased}" type="Warning"/>
+										</items>
+									</FlexBox>
+								</l:content>
+							</l:Grid>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection>
+					<subSections>
+						<ObjectPageSubSection id="shopConfigurationId" titleUppercase="false" title="{i18n>dayOverview}">
+							<blocks>
+								<m:FlexBox width="100%" id="box1">
+									<m:items>
+										<mvc:XMLView viewName="Zeiterfassung.view.TimeTable"/>
+									</m:items>
+								</m:FlexBox>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection title="Projekt">
+					<subSections>
+						<ObjectPageSubSection id="projectDescription" title="{i18n>projectDescription}">
+							<blocks>
+								<Panel xmlns="sap.m" width="auto" expanded="true" id="panel1" backgroundDesign="Solid" accessibleRole="Region">
+									<content>
+										<Text xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m"
+											text="{completeProject>/description}" id="text4_copy"/>
+									</content>
+								</Panel>
+							</blocks>
+						</ObjectPageSubSection>
+						<ObjectPageSubSection id="projectInfo" title="{i18n>projectInfo}">
+							<blocks>
+								<Panel xmlns="sap.m" width="auto" expanded="true" id="panel11" backgroundDesign="Solid" accessibleRole="Region">
+									<content>
+										<l:VerticalLayout width="20%">
+											<Label text="Ursprüngliche Schätzung:"/>
+											<Text xmlns="sap.m" text="{path: 'projectPlan>/baseEffort', formatter: '.formatter.effortText'}" id="text111"/>
+										</l:VerticalLayout>
+										<l:VerticalLayout width="20%">
+											<Label text="Aktuelle Schätzung:"/>
+											<Text xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+												xmlns="sap.m" text="{path: 'projectPlan>/expectedEffort', formatter: '.formatter.effortText'}" id="text111_copy"/>
+										</l:VerticalLayout>
+										<l:VerticalLayout width="20%">
+											<Label text="Verbleibender Aufwand:"/>
+											<Text xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+												xmlns="sap.m" text="{path: 'projectPlan>/openEffort', formatter: '.formatter.effortText'}" id="text111_copy1"/>
+										</l:VerticalLayout>
+										<l:VerticalLayout width="20%">
+											<Label text="Aktueller Aufwand:"/>
+											<Text xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+												xmlns="sap.m" text="{path: 'projectPlan>/actualEffort', formatter: '.formatter.effortText'}" id="text111_copy2"/>
+										</l:VerticalLayout>
+										<l:VerticalLayout width="20%">
+											<Label text="Projektfortschritt"/>
+											<ProgressIndicator xmlns="sap.m" percentValue="{projectPlan>/complete}" id="indicator01" state="Information"/>
+										</l:VerticalLayout>
+									</content>
+								</Panel>
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+			</sections>
+		</ObjectPageLayout>
+		<m:content>
+			<l:VerticalLayout width="100%" id="layout12_1589803774823"/>
+			<m:FlexBox visible="{hiddenModel>/noProject}" width="100%" id="box1_1586340947590" alignContent="End" justifyContent="Center" height="100%"
+				alignItems="Center" renderType="Bare">
+				<m:items>
+					<m:FlexBox xmlns="sap.uxap" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+						xmlns:m="sap.m" width="300px" id="box1_1590401986816" justifyContent="SpaceAround" renderType="Bare" alignItems="Center">
+						<m:items>
+							<core:Icon xmlns="sap.uxap" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:mvc="sap.ui.core.mvc"
+								xmlns:core="sap.ui.core" src="sap-icon://arrow-left" size="2em" id="icon0_1590401942600"/>
+							<Text xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:m="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+								xmlns="sap.m" text="Bitte wählen Sie ein Projekt aus" id="text1" textAlign="Center"/>
+						</m:items>
+					</m:FlexBox>
+				</m:items>
+			</m:FlexBox>
+		</m:content>
+		<m:footer>
+			<m:Toolbar width="100%" id="timeToolbar" height="70px" active="true">
+				<m:content>
+					<mvc:XMLView viewName="Zeiterfassung.view.Timer" height="70px"/>
+				</m:content>
+			</m:Toolbar>
+		</m:footer>
+	</m:Page>
+</mvc:View>
